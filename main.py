@@ -1,5 +1,6 @@
 import flet as ft
 from flet import Page, Text, ListView, ListTile, Image, Container, Column, Row, BorderRadius, colors, alignment, ElevatedButton
+import os  # For dynamic port handling in Azure
 
 # Function to display the cart
 cart = []
@@ -163,7 +164,8 @@ def main(page: Page):
     # Populate the initial list
     populate_food_list()
 
-# This part is crucial for Replit, use port 8080
+# This part is crucial for Replit and Azure deployment
 if __name__ == "__main__":
-    ft.app(target=main, view=ft.AppView.WEB_BROWSER, port=8080)
+    port = int(os.environ.get("PORT", 8080))  # Dynamically fetch the port from environment
+    ft.app(target=main, view=ft.AppView.WEB_BROWSER, port=port)
     
